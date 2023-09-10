@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+</head>
+<body>
+<h1>
+    [[${pageTitle}]]
+</h1>
+<form th:action="@{/categories/save}" method="post" th:object="${category}">
+    <input type="hidden" th:field="*{id_category}" />
+    <div>
+        <div>
+            <label>Name: </label>
+            <div>
+                <input type="text" th:field="*{name_category}"/>
+            </div>
+            <div>
+                <button type="submit">Save</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+</body>
+</html>
