@@ -12,18 +12,24 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_song;
 
-    @Column
+    @Column(nullable = true)
     private String song_name;
 
-    @Column
+    @Column(nullable = true)
     private String lyric;
 
-
-    @Column
+    @Column(nullable = true)
     private String image;
 
-    @Column
+    @Column(nullable = true)
+    private String file_music;
+
+    @Column// Add this annotation
     private Integer id_category;
+
+    @Column
+    private Integer id_artist;
+
 
 
     public Integer getId_song() {
@@ -58,6 +64,14 @@ public class Song {
         this.image = image;
     }
 
+    public String getFile_music() {
+        return file_music;
+    }
+
+    public void setFile_music(String file_music) {
+        this.file_music = file_music;
+    }
+
     public Integer getId_category() {
         return id_category;
     }
@@ -65,4 +79,21 @@ public class Song {
     public void setId_category(Integer id_category) {
         this.id_category = id_category;
     }
+
+
+    public Integer getId_artist() {return  id_artist;}
+
+    public void setId_artist(Integer id_artist) {this.id_artist = id_artist;}
+
+
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_category", insertable = false, updatable = false)
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_artist", insertable = false, updatable = false)
+    private Artist artist;
 }
